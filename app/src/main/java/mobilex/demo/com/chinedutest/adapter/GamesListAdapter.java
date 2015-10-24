@@ -1,6 +1,9 @@
 package mobilex.demo.com.chinedutest.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +23,10 @@ import mobilex.demo.com.chinedutest.data.GameData;
 public class GamesListAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     private List<GameData> gameDataList;
+    private Context context;
     // Constructor
     public GamesListAdapter (Context context) {
+        this.context = context;
         gameDataList = new ArrayList<>();
         layoutInflater = LayoutInflater.from(context);
     }
@@ -70,9 +75,25 @@ public class GamesListAdapter extends BaseAdapter {
 
         GameData gameData = gameDataList.get(position);
         if (gameData != null) {
-            viewHolder.gameImage.setImageBitmap(gameData.getGameIcon());
-            viewHolder.gameTitle.setText(gameData.getGameName());
-            viewHolder.consoleName.setText(gameData.getConsoleName());
+            if (gameData.getGameIcon() != null) {
+                final Bitmap bitmap  = BitmapFactory.decodeByteArray(gameData.getGameIcon(), 0, gameData.getGameIcon().length);
+                viewHolder.gameImage.setImageBitmap(bitmap);
+            }else{
+                // place a generic image in the view
+                viewHolder.gameImage.setImageResource(R.mipmap.ic_launcher);
+            }
+
+            if (!TextUtils.isEmpty(gameData.getGameName())) {
+                viewHolder.gameTitle.setText(gameData.getGameName());
+            }else{
+                viewHolder.gameTitle.setText(R.string.unknown);
+            }
+
+            if (!TextUtils.isEmpty(gameData.getConsoleName())) {
+                viewHolder.consoleName.setText(gameData.getConsoleName());
+            } else {
+                viewHolder.consoleName.setText(R.string.unknown);
+            }
         }
         return convertView;
     }

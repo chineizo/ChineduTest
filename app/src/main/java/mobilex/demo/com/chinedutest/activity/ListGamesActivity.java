@@ -2,6 +2,8 @@ package mobilex.demo.com.chinedutest.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import mobilex.demo.com.chinedutest.R;
 
@@ -20,4 +22,6 @@ public class ListGamesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(ListGamesActivity.class.getSimpleName());
     }
+
+
 }

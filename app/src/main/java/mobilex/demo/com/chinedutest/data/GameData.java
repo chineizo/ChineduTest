@@ -11,7 +11,7 @@ public class GameData {
     private String gameName;
     private String consoleName;
     private boolean isRated;
-    private Bitmap gameIcon;
+    private byte [] gameIcon;
 
     // Class constructor
     public GameData () {
@@ -42,11 +42,11 @@ public class GameData {
         this.isRated = isRated;
     }
 
-    public Bitmap getGameIcon() {
+    public byte [] getGameIcon() {
         return gameIcon;
     }
 
-    public void setGameIcon(Bitmap gameIcon) {
+    public void setGameIcon(byte [] gameIcon) {
         this.gameIcon = gameIcon;
     }
 
