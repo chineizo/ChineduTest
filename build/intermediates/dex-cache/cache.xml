@@ -2,46 +2,46 @@
 <items version="2" >
 
     <item
-        jar="/Users/chinedu.nweze/Documents/ChineduTest/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
+        jar="/home/chinedu/ChineduTest/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
-        <dex dex="/Users/chinedu.nweze/Documents/ChineduTest/app/build/intermediates/pre-dexed/debug/classes-75b4ad1f4ea118fe3eaa3e1a5e3a829868cd8628.jar" />
+        <dex dex="/home/chinedu/ChineduTest/app/build/intermediates/pre-dexed/debug/classes-bf32e4a42b34455a43aff75bf8b1f3750ac46a83.jar" />
     </item>
     <item
-        jar="/Users/chinedu.nweze/Documents/ChineduTest/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
-        <dex dex="/Users/chinedu.nweze/Documents/ChineduTest/app/build/intermediates/pre-dexed/debug/classes-f839231b5fb0b131787f06716ec833e300d67e15.jar" />
-    </item>
-    <item
-        jar="/Users/chinedu.nweze/Documents/ChineduTest/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
-        <dex dex="/Users/chinedu.nweze/Documents/ChineduTest/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.0-d3a7dac3e02ac81da6d0b840b5826361f6595bac.jar" />
-    </item>
-    <item
-        jar="/Users/chinedu.nweze/Documents/ChineduTest/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.0/jars/classes.jar"
+        jar="/home/chinedu/ChineduTest/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
-        <dex dex="/Users/chinedu.nweze/Documents/ChineduTest/app/build/intermediates/pre-dexed/debug/classes-33bfa6535d2c0f418c2ab1043e48dce69561e834.jar" />
+        <dex dex="/home/chinedu/ChineduTest/app/build/intermediates/pre-dexed/debug/classes-18f359cbdedcac17adeb8b2e71154b9cd06311c8.jar" />
     </item>
     <item
-        jar="/Users/chinedu.nweze/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
-        <dex dex="/Users/chinedu.nweze/Documents/ChineduTest/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0-e30d0f13bdd779fbe20c695ad9ad0662e6958ddf.jar" />
-    </item>
-    <item
-        jar="/Users/chinedu.nweze/Documents/ChineduTest/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/jars/classes.jar"
+        jar="/home/chinedu/ChineduTest/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="19026d31f5d3ae868db81319671a642be5fbba08">
-        <dex dex="/Users/chinedu.nweze/Documents/ChineduTest/app/build/intermediates/pre-dexed/debug/classes-0a3f765e1a2fb97bf9dbeb9223eb2e9e1ec16a70.jar" />
+        <dex dex="/home/chinedu/ChineduTest/app/build/intermediates/pre-dexed/debug/classes-e35d0848741a23d05f159ea27e2bfc0064ba70dc.jar" />
+    </item>
+    <item
+        jar="/home/chinedu/ChineduTest/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="/home/chinedu/ChineduTest/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.0-5061a003fa188fe9601ef6c0a6fdeef4f930ca28.jar" />
+    </item>
+    <item
+        jar="/home/chinedu/ChineduTest/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="/home/chinedu/ChineduTest/app/build/intermediates/pre-dexed/debug/classes-2beba34164a4cf82f1453a362aa7633d279d04eb.jar" />
+    </item>
+    <item
+        jar="/home/chinedu/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="/home/chinedu/ChineduTest/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0-8884e972dfb29a0ed561210a32acfe0c9eec82da.jar" />
     </item>
 
 </items>

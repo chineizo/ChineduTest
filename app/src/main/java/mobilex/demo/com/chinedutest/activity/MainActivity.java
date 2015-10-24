@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().hide();
 
         listGameTextView = (TextView) findViewById(R.id.list_game_textview);
         listGameTextView.setOnClickListener(this);
