@@ -18,6 +18,7 @@ public class RateGamesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_content_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(RateGamesActivity.class.getSimpleName());
     }
 
 }

@@ -18,5 +18,6 @@ public class ListGamesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_content_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(ListGamesActivity.class.getSimpleName());
     }
 }
