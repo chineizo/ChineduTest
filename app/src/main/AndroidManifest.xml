@@ -19,11 +19,23 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.ListGamesActivity">
+        <activity android:name=".activity.ListGamesActivity"
+            android:parentActivityName=".activity.MainActivity"
+
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
 
         </activity>
 
-        <activity android:name=".activity.RateGamesActivity">
+        <activity android:name=".activity.RateGamesActivity"
+            android:parentActivityName=".activity.MainActivity"
+
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
 
         </activity>
     </application>
