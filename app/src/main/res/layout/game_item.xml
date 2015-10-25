@@ -78,12 +78,13 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
 
-            <CheckedTextView
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
                 android:checked="false"
-                android:clickable="false"
+                android:clickable="true"
                 android:gravity="center"
                 android:text="@string/completed" />
         </FrameLayout>

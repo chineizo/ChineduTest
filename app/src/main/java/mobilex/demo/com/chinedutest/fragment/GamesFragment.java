@@ -14,7 +14,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -53,9 +55,6 @@ public class GamesFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceSstate) {
         super.onCreate(savedInstanceSstate);
-        setHasOptionsMenu(true);
-
-
     }
 
     @Override
@@ -80,21 +79,30 @@ public class GamesFragment extends Fragment implements View.OnClickListener {
         addGameNameEditText = (EditText) view.findViewById(R.id.game_title);
         gameIconView = (ImageView) view.findViewById(R.id.game_icon_view);
         listView = (ListView) view.findViewById(R.id.game_listview);
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                CheckBox checkBox = (CheckBox)view.findViewById(R.id.checkbox);
+//                if (checkBox.isChecked()) {
+//                    Toast.makeText(view.getContext(), "Checked Baby", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
         addNewGameLayout = view.findViewById(R.id.add_new_game_layout);
 
         // Sample data to be displayed in the listview
-        GameData gameData = new GameData();
-        gameData.setConsoleName("Nintendo");
-        gameData.setGameName("Game Boy");
-        //        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.vx_04_post_btn_video);
-//        byte[] data = getBytes(bitmap);
-
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-        gameData.setGameIcon(Utility.getByteArray(bitmap));
+//        GameData gameData = new GameData();
+//        gameData.setConsoleName("Nintendo");
+//        gameData.setGameName("Game Boy");
+//        //        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.vx_04_post_btn_video);
+////        byte[] data = getBytes(bitmap);
+//
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+//        gameData.setGameIcon(Utility.getByteArray(bitmap));
 
 
         gamesListAdapter = new GamesListAdapter(getActivity());
-        gamesListAdapter.addGameData(gameData);
+       // gamesListAdapter.addGameData(gameData);
         listView.setAdapter(gamesListAdapter);
 
         // Update the listview with the list of games in the sqlite database
@@ -117,13 +125,23 @@ public class GamesFragment extends Fragment implements View.OnClickListener {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.add_menu_option) {
             showAddGameForm();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void showGameRating (boolean flag) {
+//        int count = gamesListAdapter.getCount();
+//        for (int index = 0; index < count; index++) {
+//            ((GameData)gamesListAdapter.getItem(index)).setIsRated(flag);
+//        }
+        gamesListAdapter.setShowRatings(flag);
+        gamesListAdapter.notifyDataSetChanged();
+
     }
 
     public void showAddGameForm () {

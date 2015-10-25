@@ -1,11 +1,17 @@
 package mobilex.demo.com.chinedutest.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.provider.BaseColumns;
 import android.util.Log;
+
+import mobilex.demo.com.chinedutest.R;
+import mobilex.demo.com.chinedutest.utility.Utility;
 
 /**
  * Created by chinedu on 10/24/15.
@@ -48,6 +54,25 @@ public class GameDatabase extends SQLiteOpenHelper {
             for (TableSpec tableSpec : tables) {
                 tableSpec.create(db);
             }
+
+
+
+            // Sample data to be displayed in the listview
+            GameData gameData = new GameData();
+            gameData.setConsoleName("Nintendo");
+            gameData.setGameName("Game Boy");
+            gameData.setIsCompleted(false);
+            gameData.setRating(2.5f);
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(GameDatabase.GamesColumns.DB_COL_NAME, gameData.getGameName());
+            contentValues.put(GameDatabase.GamesColumns.DB_COL_CONSOLE, gameData.getConsoleName());
+            contentValues.put(GameDatabase.GamesColumns.DB_COL_IMAGE, gameData.getGameIcon());
+            contentValues.put(GameDatabase.GamesColumns.DB_COL_COMPLETED, gameData.isCompleted());
+            contentValues.put(GameDatabase.GamesColumns.DB_COL_RATING, gameData.getRating());
+            db.insert(GameDatabase.DB_TABLE_GAMES, null, contentValues);
+
+
         } catch (SQLException e) {
             Log.e(TAG, "SQL Exception - failed to create database tables.", e);
         }
@@ -72,7 +97,13 @@ public class GameDatabase extends SQLiteOpenHelper {
         for (TableSpec spec : tableSpecs) {
             dropTable(db, spec.getTableName());
         }
+
+
+
     }
+
+
+
 
     protected void dropTable(SQLiteDatabase db, String tableName) {
         db.execSQL("DROP TABLE IF EXISTS " + tableName);
@@ -94,6 +125,8 @@ public class GameDatabase extends SQLiteOpenHelper {
                         GamesColumns.DB_COL_NAME + " TEXT NOT NULL",
                         GamesColumns.DB_COL_CONSOLE + " TEXT NOT NULL",
                         GamesColumns.DB_COL_IMAGE + " BLOB",
+                        GamesColumns.DB_COL_COMPLETED + " INTEGER",
+                        GamesColumns.DB_COL_RATING + " FLOAT",
 
                 })
         };
@@ -142,5 +175,7 @@ public class GameDatabase extends SQLiteOpenHelper {
         public static final String DB_COL_NAME = "name";
         public static final String DB_COL_CONSOLE = "console";
         public static final String DB_COL_IMAGE = "image";
+        public static final String DB_COL_COMPLETED = "completed";
+        public static final String DB_COL_RATING = "rating";
     }
 }

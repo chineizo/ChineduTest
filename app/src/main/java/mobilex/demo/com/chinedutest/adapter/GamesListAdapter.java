@@ -4,17 +4,23 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CheckedTextView;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import mobilex.demo.com.chinedutest.R;
+import mobilex.demo.com.chinedutest.data.Content;
 import mobilex.demo.com.chinedutest.data.GameData;
 
 /**
@@ -23,6 +29,7 @@ import mobilex.demo.com.chinedutest.data.GameData;
 public class GamesListAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     private List<GameData> gameDataList;
+    private boolean isShowRatings;
     private Context context;
     // Constructor
     public GamesListAdapter (Context context) {
@@ -44,6 +51,9 @@ public class GamesListAdapter extends BaseAdapter {
         gameDataList.clear();
     }
 
+   public void setShowRatings (boolean showRatings) {
+       this.isShowRatings = showRatings;
+   }
 
     @Override
     public int getCount() {
@@ -69,12 +79,14 @@ public class GamesListAdapter extends BaseAdapter {
             viewHolder.consoleName = (TextView)convertView.findViewById(R.id.game_console_title);
             viewHolder.gameImage = (ImageView)convertView.findViewById(R.id.game_image_view);
             viewHolder.gameTitle = (TextView)convertView.findViewById(R.id.game_title);
+            viewHolder.checkedBox = (CheckBox)convertView.findViewById(R.id.checkbox);
+            viewHolder.ratingBar = (RatingBar)convertView.findViewById(R.id.games_rating);
             convertView.setTag(viewHolder);
         } else{
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-        GameData gameData = gameDataList.get(position);
+        final GameData gameData = gameDataList.get(position);
         if (gameData != null) {
             if (gameData.getGameIcon() != null) {
                 final Bitmap bitmap  = BitmapFactory.decodeByteArray(gameData.getGameIcon(), 0, gameData.getGameIcon().length);
@@ -95,6 +107,28 @@ public class GamesListAdapter extends BaseAdapter {
             } else {
                 viewHolder.consoleName.setText(R.string.unknown);
             }
+
+            viewHolder.checkedBox.setVisibility(isShowRatings ? View.GONE : View.VISIBLE);
+            viewHolder.checkedBox.setChecked(gameData.isCompleted());
+
+            viewHolder.ratingBar.setVisibility(isShowRatings ? View.VISIBLE : View.GONE);
+            viewHolder.ratingBar.setRating(gameData.getRating());
+
+            viewHolder.checkedBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    gameData.setIsCompleted(isChecked);
+                    Content.getInstance(context).updateGameData(gameData);
+                }
+            });
+
+            viewHolder.ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+                @Override
+                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                    gameData.setRating(rating);
+                    Content.getInstance(context).updateGameData(gameData);
+                }
+            });
         }
         return convertView;
     }
@@ -106,8 +140,8 @@ public class GamesListAdapter extends BaseAdapter {
         ImageView gameImage;
         TextView gameTitle;
         TextView consoleName;
-        boolean isRated;
-
+        RatingBar ratingBar;
+        CheckBox checkedBox;
 
     }
 }

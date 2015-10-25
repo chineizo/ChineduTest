@@ -46,7 +46,23 @@ public class Content {
         contentValues.put(GameDatabase.GamesColumns.DB_COL_NAME, gameData.getGameName());
         contentValues.put(GameDatabase.GamesColumns.DB_COL_CONSOLE, gameData.getConsoleName());
         contentValues.put(GameDatabase.GamesColumns.DB_COL_IMAGE, gameData.getGameIcon());
+        contentValues.put(GameDatabase.GamesColumns.DB_COL_COMPLETED, gameData.isCompleted());
+        contentValues.put(GameDatabase.GamesColumns.DB_COL_RATING, gameData.getRating());
         return sqLiteDatabase.insert(GameDatabase.DB_TABLE_GAMES, null, contentValues);
+    }
+
+    /**
+     * Update the database with new data in the GameData object and return the number of rows updated
+     */
+    public int updateGameData (GameData gameData) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(GameDatabase.GamesColumns.DB_COL_NAME, gameData.getGameName());
+        contentValues.put(GameDatabase.GamesColumns.DB_COL_CONSOLE, gameData.getConsoleName());
+        contentValues.put(GameDatabase.GamesColumns.DB_COL_IMAGE, gameData.getGameIcon());
+        contentValues.put(GameDatabase.GamesColumns.DB_COL_COMPLETED, gameData.isCompleted());
+        contentValues.put(GameDatabase.GamesColumns.DB_COL_RATING, gameData.getRating());
+        return sqLiteDatabase.update(GameDatabase.DB_TABLE_GAMES, contentValues,
+                GameDatabase.GamesColumns._ID + " = ?", new String [] {String.valueOf(gameData.getId())});
     }
 
     /**
@@ -62,14 +78,19 @@ public class Content {
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 while (!cursor.isAfterLast()) {
-                    //int id = cursor.getInt(cursor.getColumnIndex(GameDatabase.GamesColumns._ID));
+                    int id = cursor.getInt(cursor.getColumnIndex(GameDatabase.GamesColumns._ID));
                     String gameName = cursor.getString(cursor.getColumnIndex(GameDatabase.GamesColumns.DB_COL_NAME));
                     String gameConsole = cursor.getString(cursor.getColumnIndex(GameDatabase.GamesColumns.DB_COL_CONSOLE));
                     byte[] imageData = cursor.getBlob(cursor.getColumnIndex(GameDatabase.GamesColumns.DB_COL_IMAGE));
+                    boolean isCompleted = cursor.getInt(cursor.getColumnIndex(GameDatabase.GamesColumns.DB_COL_COMPLETED)) == 1;
+                    float rating = cursor.getFloat(cursor.getColumnIndex(GameDatabase.GamesColumns.DB_COL_RATING));
                     GameData gameData = new GameData();
+                    gameData.setId(id);
                     gameData.setGameIcon(imageData);
                     gameData.setConsoleName(gameConsole);
                     gameData.setGameName(gameName);
+                    gameData.setRating(rating);
+                    gameData.setIsCompleted(isCompleted);
                     list.add(gameData);
                     cursor.moveToNext();
                 }
