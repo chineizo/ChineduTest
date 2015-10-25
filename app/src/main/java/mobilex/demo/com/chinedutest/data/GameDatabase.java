@@ -5,13 +5,8 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.provider.BaseColumns;
 import android.util.Log;
-
-import mobilex.demo.com.chinedutest.R;
-import mobilex.demo.com.chinedutest.utility.Utility;
 
 /**
  * Created by chinedu on 10/24/15.
@@ -55,12 +50,10 @@ public class GameDatabase extends SQLiteOpenHelper {
                 tableSpec.create(db);
             }
 
-
-
             // Sample data to be displayed in the listview
             GameData gameData = new GameData();
-            gameData.setConsoleName("Nintendo");
-            gameData.setGameName("Game Boy");
+            gameData.setConsoleName("Nintendo 64");
+            gameData.setGameName("Super Mario World");
             gameData.setIsCompleted(false);
             gameData.setRating(2.5f);
 
@@ -97,13 +90,7 @@ public class GameDatabase extends SQLiteOpenHelper {
         for (TableSpec spec : tableSpecs) {
             dropTable(db, spec.getTableName());
         }
-
-
-
     }
-
-
-
 
     protected void dropTable(SQLiteDatabase db, String tableName) {
         db.execSQL("DROP TABLE IF EXISTS " + tableName);
@@ -118,7 +105,11 @@ public class GameDatabase extends SQLiteOpenHelper {
         db.execSQL(sqlAlterTable);
     }
 
-    private TableSpec[] createTableSpecs() {
+    /**
+     * Tabe columns definition
+     * @return Table Specifications representing the table columns
+     */
+    protected TableSpec[] createTableSpecs() {
         TableSpec[] tables = {
                 new TableSpec(DB_TABLE_GAMES, new String[]{
                         GamesColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT",
@@ -133,8 +124,10 @@ public class GameDatabase extends SQLiteOpenHelper {
         return tables;
     }
 
-
-    static class TableSpec {
+    /**
+     * A table model that helps in creating the table columns
+     */
+    protected static class TableSpec {
         private final String tableName;
         private final String[] statement;
 

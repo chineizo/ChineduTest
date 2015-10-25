@@ -24,7 +24,11 @@ import mobilex.demo.com.chinedutest.data.Content;
 import mobilex.demo.com.chinedutest.data.GameData;
 
 /**
- * Created by chinedu.nweze on 10/22/15.
+ *  Created by chinedu.nweze on 10/22/15.
+
+
+ /**
+ * Adapter class that renders the Games Data to the ListView
  */
 public class GamesListAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
@@ -43,7 +47,7 @@ public class GamesListAdapter extends BaseAdapter {
     }
 
     public void addGameDataList (List<GameData> gameDataList) {
-        this.gameDataList.addAll(gameDataList);
+        this.gameDataList = gameDataList;
         notifyDataSetChanged();
     }
 
