@@ -33,7 +33,7 @@ public class GameDatabase extends SQLiteOpenHelper {
      * @param applicationContext
      * @return
      */
-    public static synchronized SQLiteDatabase getSQLiteDatabase(Context applicationContext) throws SQLException {
+    protected static synchronized SQLiteDatabase getSQLiteDatabase(Context applicationContext) throws SQLException {
         if (gameDbHelper == null) {
             Log.d(TAG, "db_helper created!");
             gameDbHelper = new GameDatabase(applicationContext);
@@ -140,7 +140,7 @@ public class GameDatabase extends SQLiteOpenHelper {
     public static abstract class GamesColumns implements BaseColumns {
         // Columns names
         public static final String DB_COL_NAME = "name";
-        public static final String DB_COL_CONSOLE = "description";
+        public static final String DB_COL_CONSOLE = "console";
         public static final String DB_COL_IMAGE = "image";
     }
 }

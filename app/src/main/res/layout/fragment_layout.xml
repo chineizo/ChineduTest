@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin"
     android:orientation="vertical">
 
     <ListView
@@ -49,7 +48,7 @@
                 android:id="@+id/game_console_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/game_title"
+                android:hint="@string/game_console"
                 android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true" />

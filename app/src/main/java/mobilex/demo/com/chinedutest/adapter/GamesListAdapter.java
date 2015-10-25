@@ -36,7 +36,8 @@ public class GamesListAdapter extends BaseAdapter {
     }
 
     public void addGameDataList (List<GameData> gameDataList) {
-            this.gameDataList = gameDataList;
+        this.gameDataList.addAll(gameDataList);
+        notifyDataSetChanged();
     }
 
     public void clearGameData (){

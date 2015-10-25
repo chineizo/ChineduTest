@@ -48,6 +48,7 @@ public class GamesFragment extends Fragment implements View.OnClickListener {
     private ImageView gameIconView;
     private View addNewGameLayout;
     private Bitmap gameIcon;
+    private GamesListAdapter gamesListAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceSstate) {
@@ -81,7 +82,7 @@ public class GamesFragment extends Fragment implements View.OnClickListener {
         listView = (ListView) view.findViewById(R.id.game_listview);
         addNewGameLayout = view.findViewById(R.id.add_new_game_layout);
 
-
+        // Sample data to be displayed in the listview
         GameData gameData = new GameData();
         gameData.setConsoleName("Nintendo");
         gameData.setGameName("Game Boy");
@@ -92,9 +93,15 @@ public class GamesFragment extends Fragment implements View.OnClickListener {
         gameData.setGameIcon(Utility.getByteArray(bitmap));
 
 
-        GamesListAdapter gamesListAdapter = new GamesListAdapter(getActivity());
+        gamesListAdapter = new GamesListAdapter(getActivity());
         gamesListAdapter.addGameData(gameData);
         listView.setAdapter(gamesListAdapter);
+
+        // Update the listview with the list of games in the sqlite database
+        final List<GameData> gameDataList = Content.getInstance(getActivity()).getGames();
+        if (gameDataList != null) {
+            gamesListAdapter.addGameDataList(gameDataList);
+        }
     }
 
     @Override
@@ -112,16 +119,20 @@ public class GamesFragment extends Fragment implements View.OnClickListener {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.add_menu_option) {
-
+            showAddGameForm();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    public void showAddGameForm () {
+        // swap out the layouts to allow user interact with game add form
+        listView.setVisibility(View.GONE);
+        addNewGameLayout.setVisibility(View.VISIBLE);
+    }
 
     public void addNewGame() {
-        // swap out the layouts to allow user interact with game add form
         listView.setVisibility(View.VISIBLE);
         addNewGameLayout.setVisibility(View.GONE);
 
@@ -139,10 +150,9 @@ public class GamesFragment extends Fragment implements View.OnClickListener {
         // Store game data in sqlite database
         Content.getInstance(getActivity()).addGame(gameData);
 
-        List<GameData> list = Content.getInstance(getActivity()).getGames();
-        for (GameData data : list) {
-            Log.d("CHINEDU", "Data:" + data.toString());
-        }
+        // Refresh the list view with new data from SQlite
+        List<GameData> gameDataList = Content.getInstance(getActivity()).getGames();
+        gamesListAdapter.addGameDataList(gameDataList);
 
     }
 
